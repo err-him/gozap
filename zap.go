@@ -69,6 +69,7 @@ func newZapLogger(config Configuration) (Logger, error) {
 	logger := zap.New(combinedCore,
 		zap.AddCallerSkip(2),
 		zap.AddCaller(),
+		zap.AddStacktrace(getZapLevel(config.ConsoleLevel)),
 	).Sugar()
 
 	return &zapLogger{
